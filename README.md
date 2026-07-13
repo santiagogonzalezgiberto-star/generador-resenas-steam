@@ -4,9 +4,7 @@ Una app web local, en un solo archivo HTML, para escribir reseñas de Steam con 
 
 > **Probalo online:** https://santiagogonzalezgiberto-star.github.io/generador-resenas-steam/
 
-<!-- Consejo: sacá una captura de la app y guardala como captura.png en esta carpeta;
-     después descomentá la línea de abajo para que se vea acá. -->
-<!-- ![Vista de la app](captura.png) -->
+![Vista de la app](captura.png)
 
 ## Qué hace
 
