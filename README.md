@@ -2,8 +2,7 @@
 
 Una app web local, en un solo archivo HTML, para escribir reseñas de Steam con estilo propio y exportarlas en **BBCode** listo para pegar. Sin instalaciones, sin cuentas, sin conexión: se abre con doble clic y todos tus datos quedan en tu navegador.
 
-> **Probalo online:** https://TU-USUARIO.github.io/generador-resenas-steam/
-> _(reemplazá `TU-USUARIO` por tu usuario de GitHub una vez que actives GitHub Pages)_
+> **Probalo online:** https://santiagogonzalezgiberto-star.github.io/generador-resenas-steam/
 
 <!-- Consejo: sacá una captura de la app y guardala como captura.png en esta carpeta;
      después descomentá la línea de abajo para que se vea acá. -->
