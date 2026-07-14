@@ -8,6 +8,7 @@ Una app web local, en un solo archivo HTML, para escribir reseñas de Steam con 
 
 ## Qué hace
 
+- **Bilingüe:** interfaz y reseñas en **español o inglés**, con un toggle ES/EN.
 - **4 plantillas** con distinta personalidad: Deluxe, Ficha, Minimalista y Clásico.
 - **Puntajes con sliders** por categoría, con promedio automático a una nota sobre 100.
 - Categorías en dos modos: **nota** (suma al promedio) o **info** (dato con texto libre, no suma).

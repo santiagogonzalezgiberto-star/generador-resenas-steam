@@ -53,6 +53,10 @@ header{
 .logo b{font-size:15.5px; background:linear-gradient(90deg,#8fd3ff,#e9f4ff); -webkit-background-clip:text; background-clip:text; color:transparent}
 .logo .sub{font-size:10.5px; color:var(--tx2); font-weight:600; letter-spacing:.14em; text-transform:uppercase}
 .btn .ic{width:15px; height:15px; margin-right:-1px}
+.langsw{display:inline-flex; background:#1c2836; border:1px solid rgba(255,255,255,.1); border-radius:9px; padding:2px; gap:2px}
+.langsw button{background:transparent; border:none; color:var(--tx2); font:inherit; font-size:12px; font-weight:700; padding:5px 9px; border-radius:7px; cursor:pointer; transition:color .15s, background .15s; letter-spacing:.04em}
+.langsw button:hover{color:#fff}
+.langsw button.active{background:linear-gradient(180deg,#12c3ff,#2568ff); color:#fff; box-shadow:0 2px 8px rgba(45,115,255,.4)}
 .spacer{flex:1}
 main{
   display:grid; grid-template-columns:minmax(400px,470px) minmax(430px,1fr);
@@ -284,31 +288,35 @@ dialog::backdrop{background:rgba(5,10,15,.7); backdrop-filter:blur(3px)}
 <header>
   <div class="logo">
     <span class="mark"><svg class="ic" viewBox="0 0 24 24"><path d="M12 2 15.09 8.26 22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></span>
-    <span class="txt"><b>Generador de Reseñas</b><span class="sub">para Steam</span></span>
+    <span class="txt"><b>Generador de Reseñas</b><span class="sub" data-i18n="sub">para Steam</span></span>
   </div>
   <div class="spacer"></div>
-  <button class="btn" id="btnNew"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Nueva</button>
-  <button class="btn" id="btnHist"><svg class="ic" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.7 9.7 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3.5 2"/></svg>Historial<span id="histBadge">0</span></button>
-  <button class="btn primary" id="btnSave"><svg class="ic" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>Guardar</button>
+  <div class="langsw" id="langSw">
+    <button data-l="es" class="active">ES</button>
+    <button data-l="en">EN</button>
+  </div>
+  <button class="btn" id="btnNew"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span data-i18n="b_new">Nueva</span></button>
+  <button class="btn" id="btnHist"><svg class="ic" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.7 9.7 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3.5 2"/></svg><span data-i18n="b_hist">Historial</span><span id="histBadge">0</span></button>
+  <button class="btn primary" id="btnSave"><svg class="ic" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg><span data-i18n="b_save">Guardar</span></button>
 </header>
 
 <main>
   <!-- ============ COLUMNA EDITOR ============ -->
   <section>
     <div class="card">
-      <div class="card-t"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M6 12h4M8 10v4"/><circle cx="15.5" cy="11.5" r="1"/><circle cx="18" cy="14" r="1"/></svg></span>El juego</div>
+      <div class="card-t"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M6 12h4M8 10v4"/><circle cx="15.5" cy="11.5" r="1"/><circle cx="18" cy="14" r="1"/></svg></span><span data-i18n="t_game">El juego</span></div>
       <div class="grid2">
-        <label>Nombre
-          <input id="f_game" placeholder="Balatro">
+        <label><span data-i18n="l_name">Nombre</span>
+          <input id="f_game" data-i18n-ph="ph_name" placeholder="Balatro">
         </label>
-        <label>Horas jugadas
-          <input id="f_hours" placeholder="32,5">
+        <label><span data-i18n="l_hours">Horas jugadas</span>
+          <input id="f_hours" data-i18n-ph="ph_hours" placeholder="32,5">
         </label>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-t"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="8" rx="1"/><rect x="12" y="5" width="3" height="13" rx="1"/><rect x="17" y="13" width="3" height="5" rx="1"/></svg></span>Puntajes
+      <div class="card-t"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="8" rx="1"/><rect x="12" y="5" width="3" height="13" rx="1"/><rect x="17" y="13" width="3" height="5" rx="1"/></svg></span><span data-i18n="t_scores">Puntajes</span>
         <span class="final-chip" id="finalChip"><b id="finalScore">80</b>/100<span class="stars" id="finalStars">★★★★☆</span></span>
       </div>
       <div id="scoreRows"></div>
@@ -327,8 +335,8 @@ dialog::backdrop{background:rgba(5,10,15,.7); backdrop-filter:blur(3px)}
           <option value="🗺️|Exploración">🗺️ Exploración</option>
           <option value="⭐|__custom__">✏️ Otra (la escribís vos)…</option>
         </select>
-        <button class="btn sm ghost" id="btnResetCat">Restaurar</button>
-        <label class="sm-select">Estilo
+        <button class="btn sm ghost" id="btnResetCat" data-i18n="restore">Restaurar</button>
+        <label class="sm-select"><span data-i18n="l_style">Estilo</span>
           <select id="f_meter">
             <option value="bars">Barras ▰▰▱</option>
             <option value="stars">Estrellas ★★☆</option>
@@ -338,43 +346,43 @@ dialog::backdrop{background:rgba(5,10,15,.7); backdrop-filter:blur(3px)}
         </label>
       </div>
       <label class="ovr">
-        <input type="checkbox" id="f_override"> Nota final a mano
+        <input type="checkbox" id="f_override"> <span data-i18n="ovr">Nota final a mano</span>
         <input type="number" id="f_overrideVal" min="0" max="100" step="1" disabled>
       </label>
-      <div class="hint"><b style="color:#8fd3ff">NOTA</b> suma al promedio · <b style="color:#f0c142">INFO</b> es solo un dato con texto libre. Tocá la etiqueta de cada fila para cambiarla.</div>
+      <div class="hint" data-i18n-html="hint_modes"><b style="color:#8fd3ff">NOTA</b> suma al promedio · <b style="color:#f0c142">INFO</b> es solo un dato con texto libre. Tocá la etiqueta de cada fila para cambiarla.</div>
     </div>
 
     <div class="duo duo-wrap">
       <div class="card">
-        <div class="card-t good"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Lo mejor</div>
+        <div class="card-t good"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span data-i18n="t_best">Lo mejor</span></div>
         <div id="prosRows"></div>
-        <button class="btn sm" id="btnAddPro"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Añadir</button>
+        <button class="btn sm" id="btnAddPro"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span data-i18n="b_add">Añadir</span></button>
       </div>
       <div class="card">
-        <div class="card-t bad"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span>Lo peor</div>
+        <div class="card-t bad"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></span><span data-i18n="t_worst">Lo peor</span></div>
         <div id="consRows"></div>
-        <button class="btn sm" id="btnAddCon"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Añadir</button>
+        <button class="btn sm" id="btnAddCon"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span data-i18n="b_add">Añadir</span></button>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-t"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Tus palabras</div>
-      <label>Frase que resume el juego
+      <div class="card-t"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span data-i18n="t_words">Tus palabras</span></div>
+      <label><span data-i18n="l_tagline">Frase que resume el juego</span>
         <span class="inline">
-          <input id="f_tagline" placeholder="Entré a probarlo diez minutos y salí tres horas después.">
-          <button class="btn sm" id="btnIdea" title="Tirame una idea"><svg class="ic" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.5.5 1 1.2 1 2h6c0-.8.5-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+          <input id="f_tagline" data-i18n-ph="ph_tagline" placeholder="Entré a probarlo diez minutos y salí tres horas después.">
+          <button class="btn sm" id="btnIdea" data-i18n-title="idea_title" title="Tirame una idea"><svg class="ic" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.5.5 1 1.2 1 2h6c0-.8.5-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
         </span>
       </label>
-      <label>Veredicto
-        <textarea id="f_verdict" rows="4" placeholder="Qué te dejó el juego, para quién es, qué lo hace especial…"></textarea>
+      <label><span data-i18n="l_verdict">Veredicto</span>
+        <textarea id="f_verdict" rows="4" data-i18n-ph="ph_verdict" placeholder="Qué te dejó el juego, para quién es, qué lo hace especial…"></textarea>
       </label>
-      <label>Consejo (opcional)
-        <input id="f_tip" placeholder="Jugalo en velocidad x4 para dopamina máxima.">
+      <label><span data-i18n="l_tip">Consejo (opcional)</span>
+        <input id="f_tip" data-i18n-ph="ph_tip" placeholder="Jugalo en velocidad x4 para dopamina máxima.">
       </label>
-      <label>Se lo recomendás a fans de… (opcional)
-        <input id="f_like" placeholder="Vampire Survivors">
+      <label><span data-i18n="l_like">Se lo recomendás a fans de… (opcional)</span>
+        <input id="f_like" data-i18n-ph="ph_like" placeholder="Vampire Survivors">
       </label>
-      <label>¿Lo recomendás?
+      <label><span data-i18n="l_reco">¿Lo recomendás?</span>
         <select id="f_reco">
           <option value="yes">Sí, sin vueltas</option>
           <option value="sale">Solo en oferta</option>
@@ -382,8 +390,8 @@ dialog::backdrop{background:rgba(5,10,15,.7); backdrop-filter:blur(3px)}
           <option value="custom">Lo escribo yo</option>
         </select>
       </label>
-      <label id="recoCustomWrap" hidden>Tu recomendación, con tus palabras
-        <input id="f_recoCustom" placeholder="Sí, pero solo si te gustan los deckbuilders.">
+      <label id="recoCustomWrap" hidden><span data-i18n="l_recocustom">Tu recomendación, con tus palabras</span>
+        <input id="f_recoCustom" data-i18n-ph="ph_recocustom" placeholder="Sí, pero solo si te gustan los deckbuilders.">
       </label>
     </div>
   </section>
@@ -391,25 +399,25 @@ dialog::backdrop{background:rgba(5,10,15,.7); backdrop-filter:blur(3px)}
   <!-- ============ COLUMNA RESULTADO ============ -->
   <section>
     <div class="card">
-      <div class="card-t"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="7" rx="1.5"/><rect x="3" y="14" width="9" height="7" rx="1.5"/><rect x="16" y="14" width="5" height="7" rx="1.5"/></svg></span>Plantilla</div>
+      <div class="card-t"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="7" rx="1.5"/><rect x="3" y="14" width="9" height="7" rx="1.5"/><rect x="16" y="14" width="5" height="7" rx="1.5"/></svg></span><span data-i18n="t_template">Plantilla</span></div>
       <div class="pills" id="pills">
-        <button class="pill active" data-t="deluxe"><svg class="ic" viewBox="0 0 24 24"><path d="M12 2 15 8.3 22 9.3l-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.8-5-4.9 7-1z"/></svg>Deluxe</button>
-        <button class="pill" data-t="ficha"><svg class="ic" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg>Ficha</button>
-        <button class="pill" data-t="minimal"><svg class="ic" viewBox="0 0 24 24"><path d="M4 12h16M4 7h16M4 17h9"/></svg>Minimalista</button>
-        <button class="pill" data-t="clasico"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg>Clásico</button>
+        <button class="pill active" data-t="deluxe"><svg class="ic" viewBox="0 0 24 24"><path d="M12 2 15 8.3 22 9.3l-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.8-5-4.9 7-1z"/></svg><span data-i18n="pill_deluxe">Deluxe</span></button>
+        <button class="pill" data-t="ficha"><svg class="ic" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h6"/></svg><span data-i18n="pill_ficha">Ficha</span></button>
+        <button class="pill" data-t="minimal"><svg class="ic" viewBox="0 0 24 24"><path d="M4 12h16M4 7h16M4 17h9"/></svg><span data-i18n="pill_minimal">Minimalista</span></button>
+        <button class="pill" data-t="clasico"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg><span data-i18n="pill_clasico">Clásico</span></button>
       </div>
       <div class="pill-desc" id="pillDesc"></div>
     </div>
 
     <div class="card">
-      <div class="card-t"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>Así se ve en Steam</div>
+      <div class="card-t"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><span data-i18n="t_preview">Así se ve en Steam</span></div>
       <div class="game-strip"><svg class="ic" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M6 12h4M8 10v4"/><circle cx="15.5" cy="11.5" r="1"/><circle cx="18" cy="14" r="1"/></svg><span id="pv_game">Tu juego</span></div>
       <div class="steam-card">
         <div class="sc-head">
           <div class="sc-avatar"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg></div>
           <div>
-            <div class="sc-name">Tu reseña</div>
-            <div class="sc-sub">vista previa en vivo</div>
+            <div class="sc-name" data-i18n="pv_name">Tu reseña</div>
+            <div class="sc-sub" data-i18n="pv_sub">vista previa en vivo</div>
           </div>
         </div>
         <div class="sc-verdict">
@@ -421,29 +429,29 @@ dialog::backdrop{background:rgba(5,10,15,.7); backdrop-filter:blur(3px)}
         </div>
         <div class="sc-date" id="pv_date">PUBLICADA: 11 DE JULIO</div>
         <div class="sc-body" id="pv_body"></div>
-        <div class="sc-foot">¿Te ha sido útil esta reseña?
-          <span class="scb">Sí</span><span class="scb">No</span><span class="scb">Divertida</span>
+        <div class="sc-foot"><span data-i18n="foot_helpful">¿Te ha sido útil esta reseña?</span>
+          <span class="scb" data-i18n="foot_yes">Sí</span><span class="scb" data-i18n="foot_no">No</span><span class="scb" data-i18n="foot_fun">Divertida</span>
         </div>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-t bb-t"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span>BBCode listo para pegar
+      <div class="card-t bb-t"><span class="badge"><svg class="ic" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span><span data-i18n="t_bbcode">BBCode listo para pegar</span>
         <span class="cc" id="charCount">0 / 8.000</span>
-        <button class="btn primary sm" id="btnCopy"><svg class="ic" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>Copiar</button>
+        <button class="btn primary sm" id="btnCopy"><svg class="ic" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span data-i18n="b_copy">Copiar</span></button>
       </div>
       <textarea id="bbOut" readonly spellcheck="false"></textarea>
-      <div class="hint">Pegalo en Steam: página del juego → «Escribir una reseña». Límite de Steam: 8.000 caracteres.</div>
+      <div class="hint" data-i18n="bb_hint">Pegalo en Steam: página del juego → «Escribir una reseña». Límite de Steam: 8.000 caracteres.</div>
     </div>
   </section>
 </main>
 
 <dialog id="dlgHist">
-  <div class="dlg-h"><span>Reseñas guardadas</span> <button class="btn sm ghost" id="dlgClose"><svg class="ic" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>Cerrar</button></div>
+  <div class="dlg-h"><span data-i18n="dlg_title">Reseñas guardadas</span> <button class="btn sm ghost" id="dlgClose"><svg class="ic" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg><span data-i18n="b_close">Cerrar</span></button></div>
   <div class="dlg-body" id="histList"></div>
   <div class="dlg-f">
-    <button class="btn sm" id="btnExport"><svg class="ic" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>Exportar (.json)</button>
-    <button class="btn sm" id="btnImport"><svg class="ic" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg>Importar</button>
+    <button class="btn sm" id="btnExport"><svg class="ic" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg><span data-i18n="b_export">Exportar (.json)</span></button>
+    <button class="btn sm" id="btnImport"><svg class="ic" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg><span data-i18n="b_import">Importar</span></button>
     <input type="file" id="fileImport" accept="application/json,.json" hidden>
   </div>
 </dialog>
@@ -455,6 +463,7 @@ dialog::backdrop{background:rgba(5,10,15,.7); backdrop-filter:blur(3px)}
 const $ = s => document.querySelector(s);
 const LS_ALL = "santi_resenas_v1";
 const LS_DRAFT = "santi_resenas_draft_v1";
+const LS_LANG = "santi_resenas_lang_v1";
 
 /* ---------- almacenamiento ---------- */
 function lsGet(k, fb){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; }catch(e){ return fb; } }
@@ -462,19 +471,148 @@ function lsSet(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e)
 function loadAll(){ const a = lsGet(LS_ALL, []); return Array.isArray(a) ? a : []; }
 function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
 
+/* ---------- idiomas ---------- */
+let lang = (()=>{ const l = lsGet(LS_LANG, "es"); return l === "en" ? "en" : "es"; })();
+const I18N = {
+  es: {
+    sub:"para Steam", b_new:"Nueva", b_hist:"Historial", b_save:"Guardar",
+    t_game:"El juego", l_name:"Nombre", l_hours:"Horas jugadas", ph_name:"Balatro", ph_hours:"32,5",
+    t_scores:"Puntajes", restore:"Restaurar", l_style:"Estilo", ovr:"Nota final a mano",
+    addcat_default:"＋ Añadir categoría…", addcat_custom:"Otra (la escribís vos)…", cat_new:"Categoría",
+    meter_bars:"Barras", meter_stars:"Estrellas", meter_dots:"Puntos", meter_none:"Sólo números",
+    tog_score:"nota", tog_info:"info", ph_info:"alta / ~30 h / mucho…",
+    hint_modes:'<b style="color:#8fd3ff">NOTA</b> suma al promedio · <b style="color:#f0c142">INFO</b> es solo un dato con texto libre. Tocá la etiqueta de cada fila para cambiarla.',
+    t_best:"Lo mejor", t_worst:"Lo peor", b_add:"Añadir", ph_pro:"Algo que te encantó", ph_con:"Algo que te molestó",
+    t_words:"Tus palabras", l_tagline:"Frase que resume el juego", ph_tagline:"Entré a probarlo diez minutos y salí tres horas después.",
+    idea_title:"Tirame una idea", l_verdict:"Veredicto", ph_verdict:"Qué te dejó el juego, para quién es, qué lo hace especial…",
+    l_tip:"Consejo (opcional)", ph_tip:"Jugalo en velocidad x4 para dopamina máxima.",
+    l_like:"Se lo recomendás a fans de… (opcional)", ph_like:"Vampire Survivors",
+    l_reco:"¿Lo recomendás?", reco_yes:"Sí, sin vueltas", reco_sale:"Solo en oferta", reco_no:"No", reco_custom:"Lo escribo yo",
+    l_recocustom:"Tu recomendación, con tus palabras", ph_recocustom:"Sí, pero solo si te gustan los deckbuilders.",
+    t_template:"Plantilla", pill_deluxe:"Deluxe", pill_ficha:"Ficha", pill_minimal:"Minimalista", pill_clasico:"Clásico",
+    t_preview:"Así se ve en Steam", pv_game_def:"Tu juego", pv_name:"Tu reseña", pv_sub:"vista previa en vivo",
+    pv_rec:"Recomendado", pv_notrec:"No recomendado", pv_hours_rec:"h registradas", pv_posted:"PUBLICADA:",
+    foot_helpful:"¿Te ha sido útil esta reseña?", foot_yes:"Sí", foot_no:"No", foot_fun:"Divertida",
+    t_bbcode:"BBCode listo para pegar", b_copy:"Copiar",
+    bb_hint:"Pegalo en Steam: página del juego → «Escribir una reseña». Límite de Steam: 8.000 caracteres.",
+    dlg_title:"Reseñas guardadas", b_close:"Cerrar", b_export:"Exportar (.json)", b_import:"Importar",
+    hist_empty:"Todavía no guardaste ninguna reseña.<br>Completá una y tocá Guardar.", b_load:"Cargar", hist_noname:"(sin nombre)",
+    t_copied:"BBCode copiado. Pegalo en Steam.", t_needname:"Poné el nombre del juego antes de guardar.",
+    t_saved:"«{x}» guardada", t_new:"Reseña nueva, a completar.", t_loaded:"«{x}» cargada para editar.",
+    t_exported:"Backup exportado.", t_imported:"{n} reseña(s) importada(s).", t_badfile:"Ese archivo no parece un backup válido.",
+    t_noexport:"No hay reseñas guardadas para exportar.",
+    confirm_new:"¿Empezar una reseña nueva? El borrador actual se pierde si no lo guardaste.",
+    confirm_del:"¿Eliminar la reseña de «{x}»?",
+    cat_gameplay:"Gameplay", cat_graphics:"Gráficos", cat_art:"Dirección de arte", cat_sound:"Sonido y música",
+    cat_story:"Historia", cat_content:"Contenido", cat_immersion:"Inmersión", cat_performance:"Rendimiento",
+    cat_replay:"Rejugabilidad", cat_price:"Precio", cat_difficulty:"Dificultad", cat_duration:"Duración",
+    cat_progression:"Progresión", cat_stability:"Estabilidad", cat_controls:"Controles", cat_multiplayer:"Multijugador",
+    cat_originality:"Originalidad", cat_exploration:"Exploración",
+    tpl_best:"Lo mejor", tpl_worst:"Lo peor", tpl_breakdown:"Desglose", tpl_verdict:"Veredicto", tpl_tip:"Consejo", tpl_hours:"h jugadas",
+    tpl_pros:"Pros", tpl_cons:"Contras", tpl_review:"Reseña", tpl_oneline:"En una frase", tpl_best_s:"Lo mejor",
+    tpl_worst_s:"Lo peor", tpl_scores:"Notas", tpl_forfans:"Para fans de",
+    rc_q:"¿Lo recomiendo?", rc_yes:"Sí, sin vueltas.", rc_sale:"Sí, pero solo en oferta.", rc_no:"No, al menos por ahora.",
+    rc_short_yes:"Recomendado", rc_short_sale:"Recomendado (solo en oferta)", rc_short_no:"No recomendado",
+    rc_like:"Si te gustó [i]{x}[/i], entrá sin miedo.", rc_like_min:"Si te gustó [i]{x}[/i], este también es para vos.",
+    tdesc_deluxe:"Tu formato insignia: estrellas, pros y contras, desglose con barras y veredicto.",
+    tdesc_ficha:"Tarjeta compacta con el nombre del juego de título: se lee en diez segundos.",
+    tdesc_minimal:"Corto y al pie: nota, pros, contras y una línea de veredicto.",
+    tdesc_clasico:"El clásico «Final Score» con su «Score Breakdown», sobrio y directo.",
+    ideas:[
+      "Entré a probarlo diez minutos y salí tres horas después.",
+      "El «una partida más» hecho juego.",
+      "Simple de aprender, imposible de soltar.",
+      "No es perfecto, pero cuando engancha no te suelta.",
+      "De esos juegos que te hacen mirar la hora y arrepentirte.",
+      "Mi productividad murió por una buena causa.",
+      "Dopamina en formato .exe.",
+      "El mejor peor vicio que agarré este año.",
+      "Venía por curiosidad, me quedé por el vicio.",
+      "Compralo. Gracias por venir a mi charla TED.",
+    ],
+    months:["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"],
+    locale:"es-AR",
+  },
+  en: {
+    sub:"for Steam", b_new:"New", b_hist:"History", b_save:"Save",
+    t_game:"The game", l_name:"Name", l_hours:"Hours played", ph_name:"Balatro", ph_hours:"32.5",
+    t_scores:"Scores", restore:"Reset", l_style:"Style", ovr:"Set final score by hand",
+    addcat_default:"＋ Add category…", addcat_custom:"Other (you name it)…", cat_new:"Category",
+    meter_bars:"Bars", meter_stars:"Stars", meter_dots:"Dots", meter_none:"Numbers only",
+    tog_score:"score", tog_info:"info", ph_info:"high / ~30 h / a lot…",
+    hint_modes:'<b style="color:#8fd3ff">SCORE</b> counts toward the average · <b style="color:#f0c142">INFO</b> is just a free-text note. Tap each row\'s label to switch it.',
+    t_best:"The best", t_worst:"The worst", b_add:"Add", ph_pro:"Something you loved", ph_con:"Something that bugged you",
+    t_words:"Your words", l_tagline:"One line that sums up the game", ph_tagline:"Popped in for ten minutes, walked out three hours later.",
+    idea_title:"Give me an idea", l_verdict:"Verdict", ph_verdict:"What the game left you with, who it's for, what makes it special…",
+    l_tip:"Tip (optional)", ph_tip:"Play it at x4 speed for maximum dopamine.",
+    l_like:"Recommend it to fans of… (optional)", ph_like:"Vampire Survivors",
+    l_reco:"Do you recommend it?", reco_yes:"Yes, no doubt", reco_sale:"Only on sale", reco_no:"No", reco_custom:"I'll write it",
+    l_recocustom:"Your recommendation, in your words", ph_recocustom:"Yes, but only if you like deckbuilders.",
+    t_template:"Template", pill_deluxe:"Deluxe", pill_ficha:"Card", pill_minimal:"Minimal", pill_clasico:"Classic",
+    t_preview:"How it looks on Steam", pv_game_def:"Your game", pv_name:"Your review", pv_sub:"live preview",
+    pv_rec:"Recommended", pv_notrec:"Not recommended", pv_hours_rec:"hrs on record", pv_posted:"POSTED:",
+    foot_helpful:"Was this review helpful?", foot_yes:"Yes", foot_no:"No", foot_fun:"Funny",
+    t_bbcode:"BBCode ready to paste", b_copy:"Copy",
+    bb_hint:"Paste it on Steam: game page → «Write a review». Steam limit: 8,000 characters.",
+    dlg_title:"Saved reviews", b_close:"Close", b_export:"Export (.json)", b_import:"Import",
+    hist_empty:"You haven't saved any reviews yet.<br>Fill one in and tap Save.", b_load:"Load", hist_noname:"(no name)",
+    t_copied:"BBCode copied. Paste it on Steam.", t_needname:"Enter the game name before saving.",
+    t_saved:"«{x}» saved", t_new:"New review, ready to fill in.", t_loaded:"«{x}» loaded for editing.",
+    t_exported:"Backup exported.", t_imported:"{n} review(s) imported.", t_badfile:"That file doesn't look like a valid backup.",
+    t_noexport:"No saved reviews to export.",
+    confirm_new:"Start a new review? The current draft is lost if you didn't save it.",
+    confirm_del:"Delete the review for «{x}»?",
+    cat_gameplay:"Gameplay", cat_graphics:"Graphics", cat_art:"Art direction", cat_sound:"Sound & music",
+    cat_story:"Story", cat_content:"Content", cat_immersion:"Immersion", cat_performance:"Performance",
+    cat_replay:"Replayability", cat_price:"Price", cat_difficulty:"Difficulty", cat_duration:"Length",
+    cat_progression:"Progression", cat_stability:"Stability", cat_controls:"Controls", cat_multiplayer:"Multiplayer",
+    cat_originality:"Originality", cat_exploration:"Exploration",
+    tpl_best:"The best", tpl_worst:"The worst", tpl_breakdown:"Breakdown", tpl_verdict:"Verdict", tpl_tip:"Tip", tpl_hours:"h played",
+    tpl_pros:"Pros", tpl_cons:"Cons", tpl_review:"Review", tpl_oneline:"In one line", tpl_best_s:"Best",
+    tpl_worst_s:"Worst", tpl_scores:"Scores", tpl_forfans:"For fans of",
+    rc_q:"Do I recommend it?", rc_yes:"Yes, no doubt.", rc_sale:"Yes, but only on sale.", rc_no:"No, at least for now.",
+    rc_short_yes:"Recommended", rc_short_sale:"Recommended (only on sale)", rc_short_no:"Not recommended",
+    rc_like:"If you liked [i]{x}[/i], dive right in.", rc_like_min:"If you liked [i]{x}[/i], this one's for you too.",
+    tdesc_deluxe:"Your flagship format: stars, pros and cons, a bar breakdown and a verdict.",
+    tdesc_ficha:"Compact card with the game's name as the title: reads in ten seconds.",
+    tdesc_minimal:"Short and sweet: score, pros, cons and a one-line verdict.",
+    tdesc_clasico:"The classic «Final Score» with its «Score Breakdown», clean and direct.",
+    ideas:[
+      "Popped in for ten minutes, walked out three hours later.",
+      "The «just one more run» made into a game.",
+      "Easy to learn, impossible to put down.",
+      "Not perfect, but once it hooks you it won't let go.",
+      "One of those games that make you check the clock and regret it.",
+      "My productivity died for a good cause.",
+      "Dopamine in .exe format.",
+      "The best worst habit I picked up this year.",
+      "Came for the curiosity, stayed for the addiction.",
+      "Just buy it. Thanks for coming to my TED talk.",
+    ],
+    months:["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"],
+    locale:"en-US",
+  },
+};
+function t(k){ const d = I18N[lang] || I18N.es; return (k in d) ? d[k] : (I18N.es[k] ?? k); }
+
+const CAT_KEYS = [
+  {e:"🎮", k:"cat_gameplay"}, {e:"🖥️", k:"cat_graphics"}, {e:"🎨", k:"cat_art"},
+  {e:"🎵", k:"cat_sound"}, {e:"📖", k:"cat_story"}, {e:"📦", k:"cat_content"},
+  {e:"🌌", k:"cat_immersion"}, {e:"⚙️", k:"cat_performance"}, {e:"🔁", k:"cat_replay"}, {e:"💰", k:"cat_price"},
+];
+const MENU_CATS = [
+  {e:"🎨", k:"cat_art", mode:"score"}, {e:"🌌", k:"cat_immersion", mode:"score"},
+  {e:"🧠", k:"cat_difficulty", mode:"info"}, {e:"⏳", k:"cat_duration", mode:"info"},
+  {e:"📈", k:"cat_progression", mode:"score"}, {e:"🐛", k:"cat_stability", mode:"score"},
+  {e:"🕹️", k:"cat_controls", mode:"score"}, {e:"👥", k:"cat_multiplayer", mode:"score"},
+  {e:"💡", k:"cat_originality", mode:"score"}, {e:"🗺️", k:"cat_exploration", mode:"score"},
+];
+const ALL_CAT_KEYS = ["cat_gameplay","cat_graphics","cat_art","cat_sound","cat_story","cat_content",
+  "cat_immersion","cat_performance","cat_replay","cat_price","cat_difficulty","cat_duration",
+  "cat_progression","cat_stability","cat_controls","cat_multiplayer","cat_originality","cat_exploration"];
+
 /* ---------- estado ---------- */
-const DEFAULT_SCORES = () => [
-  {e:"🎮", n:"Gameplay", v:8},
-  {e:"🖥️", n:"Gráficos", v:8},
-  {e:"🎨", n:"Dirección de arte", v:8},
-  {e:"🎵", n:"Sonido y música", v:8},
-  {e:"📖", n:"Historia", v:8},
-  {e:"📦", n:"Contenido", v:8},
-  {e:"🌌", n:"Inmersión", v:8},
-  {e:"⚙️", n:"Rendimiento", v:8},
-  {e:"🔁", n:"Rejugabilidad", v:8},
-  {e:"💰", n:"Precio", v:8},
-].map(c => ({...c, mode:"score", txt:""}));
+const DEFAULT_SCORES = () => CAT_KEYS.map(c => ({e:c.e, n:t(c.k), v:8, mode:"score", txt:""}));
 function defaultState(){
   return {
     game:"", hours:"", num: loadAll().length + 1,
@@ -533,56 +671,50 @@ function scoreLine(c, meter){
   if(meter === "none") return `${c.e} [b]${c.n}[/b] — ${f}/10`;
   return `${meterStr(c.v, meter)} ${f} — ${c.e} [b]${c.n}[/b]`;
 }
-const RECO = {
-  yes:  {t:"✅ [b]¿Lo recomiendo?[/b] Sí, sin vueltas.",         short:"✅ Recomendado"},
-  sale: {t:"🟡 [b]¿Lo recomiendo?[/b] Sí, pero solo en oferta.", short:"🟡 Recomendado (solo en oferta)"},
-  no:   {t:"❌ [b]¿Lo recomiendo?[/b] No, al menos por ahora.",  short:"❌ No recomendado"},
-};
+const RECO_EMOJI = {yes:"✅", sale:"🟡", no:"❌"};
 function recoLine(s){
+  const q = `[b]${t("rc_q")}[/b]`;
   let line;
   if(s.reco === "custom"){
     const txt = s.recoCustom.trim();
     if(!txt) return "";
-    line = `💬 [b]¿Lo recomiendo?[/b] ${txt}`;
+    line = `💬 ${q} ${txt}`;
   }else{
-    line = RECO[s.reco].t;
+    const tx = {yes:t("rc_yes"), sale:t("rc_sale"), no:t("rc_no")}[s.reco];
+    line = `${RECO_EMOJI[s.reco]} ${q} ${tx}`;
   }
   const like = s.likeIf.trim();
-  if(like && s.reco !== "no") line += ` Si te gustó [i]${like}[/i], entrá sin miedo.`;
+  if(like && s.reco !== "no") line += " " + t("rc_like").replace("{x}", like);
   return line;
 }
 function recoShort(s){
   if(s.reco === "custom") return s.recoCustom.trim();
-  return RECO[s.reco].short;
+  const k = {yes:"rc_short_yes", sale:"rc_short_sale", no:"rc_short_no"}[s.reco];
+  return `${RECO_EMOJI[s.reco]} ${t(k)}`;
 }
 
 /* ---------- plantillas ---------- */
-const TDESC = {
-  deluxe:  "Tu formato insignia: estrellas, pros y contras, desglose con barras y veredicto.",
-  ficha:   "Tarjeta compacta con el nombre del juego de título: se lee en diez segundos.",
-  minimal: "Corto y al pie: nota, pros, contras y una línea de veredicto.",
-  clasico: "El clásico «Final Score» con su «Score Breakdown», sobrio y directo.",
-};
+const tdesc = tpl => t("tdesc_" + tpl);
 const TEMPLATES = {
   deluxe(s, final){
     const L = [];
     L.push(`[h1]${starsFinal(final)} — ${final}/100[/h1]`);
     if(s.tagline.trim()) L.push(`[i]«${s.tagline.trim()}»[/i]`);
     const pros = clean(s.pros), cons = clean(s.cons);
-    if(pros.length){ L.push(""); L.push("[b]✔ Lo mejor[/b]"); L.push(bbList(pros)); }
-    if(cons.length){ L.push(""); L.push("[b]✘ Lo peor[/b]"); L.push(bbList(cons)); }
+    if(pros.length){ L.push(""); L.push(`[b]✔ ${t("tpl_best")}[/b]`); L.push(bbList(pros)); }
+    if(cons.length){ L.push(""); L.push(`[b]✘ ${t("tpl_worst")}[/b]`); L.push(bbList(cons)); }
     const scored = s.scores.filter(c => c.mode !== "info");
     const infos = s.scores.filter(c => c.mode === "info" && c.txt.trim());
     if(scored.length || infos.length){
-      L.push(""); L.push("[h3]📊 Desglose[/h3]");
+      L.push(""); L.push(`[h3]📊 ${t("tpl_breakdown")}[/h3]`);
       scored.forEach(c => L.push(scoreLine(c, s.meter)));
       infos.forEach(c => L.push(`${c.e} [b]${c.n}:[/b] ${c.txt.trim()}`));
     }
-    if(s.verdict.trim()){ L.push(""); L.push("[h3]💬 Veredicto[/h3]"); L.push(s.verdict.trim()); }
-    if(s.tip.trim()){ L.push(""); L.push(`💡 [b]Consejo:[/b] ${s.tip.trim()}`); }
+    if(s.verdict.trim()){ L.push(""); L.push(`[h3]💬 ${t("tpl_verdict")}[/h3]`); L.push(s.verdict.trim()); }
+    if(s.tip.trim()){ L.push(""); L.push(`💡 [b]${t("tpl_tip")}:[/b] ${s.tip.trim()}`); }
     const rl = recoLine(s);
     if(rl){ L.push(""); L.push(rl); }
-    if(s.hours.trim()){ L.push(""); L.push("[hr][/hr]"); L.push(`[i]${s.hours.trim()} h jugadas[/i]`); }
+    if(s.hours.trim()){ L.push(""); L.push("[hr][/hr]"); L.push(`[i]${s.hours.trim()} ${t("tpl_hours")}[/i]`); }
     return L.join("\n").replace(/\n{3,}/g, "\n\n");
   },
   minimal(s, final){
@@ -590,12 +722,12 @@ const TEMPLATES = {
     L.push(`[h1]${final}/100[/h1]`);
     if(s.tagline.trim()) L.push(`[i]«${s.tagline.trim()}»[/i]`);
     const pros = clean(s.pros), cons = clean(s.cons);
-    if(pros.length){ L.push(""); L.push("✅ [b]Pros[/b]"); L.push(bbList(pros)); }
-    if(cons.length){ L.push(""); L.push("❌ [b]Contras[/b]"); L.push(bbList(cons)); }
+    if(pros.length){ L.push(""); L.push(`✅ [b]${t("tpl_pros")}[/b]`); L.push(bbList(pros)); }
+    if(cons.length){ L.push(""); L.push(`❌ [b]${t("tpl_cons")}[/b]`); L.push(bbList(cons)); }
     const like = s.likeIf.trim();
     let ver = s.verdict.trim();
-    if(like) ver += (ver ? " " : "") + `Si te gustó [i]${like}[/i], este también es para vos.`;
-    if(ver){ L.push(""); L.push(`[b]Veredicto:[/b] ${ver}`); }
+    if(like) ver += (ver ? " " : "") + t("rc_like_min").replace("{x}", like);
+    if(ver){ L.push(""); L.push(`[b]${t("tpl_verdict")}:[/b] ${ver}`); }
     if(s.tip.trim()){ L.push(""); L.push(`💡 ${s.tip.trim()}`); }
     const rs = recoShort(s);
     if(rs){ L.push(""); L.push(rs); }
@@ -603,20 +735,20 @@ const TEMPLATES = {
   },
   ficha(s, final){
     const L = [];
-    L.push(`[h1]${s.game.trim() || "Review"} — ${final}/100 ${starsFinal(final)}[/h1]`);
-    if(s.tagline.trim()) L.push(`[b]En una frase:[/b] «${s.tagline.trim()}»`);
+    L.push(`[h1]${s.game.trim() || t("tpl_review")} — ${final}/100 ${starsFinal(final)}[/h1]`);
+    if(s.tagline.trim()) L.push(`[b]${t("tpl_oneline")}:[/b] «${s.tagline.trim()}»`);
     L.push("");
     const pros = clean(s.pros), cons = clean(s.cons);
-    if(pros.length) L.push(`✔ [b]Lo mejor:[/b] ${pros.join(" · ")}`);
-    if(cons.length) L.push(`✘ [b]Lo peor:[/b] ${cons.join(" · ")}`);
+    if(pros.length) L.push(`✔ [b]${t("tpl_best_s")}:[/b] ${pros.join(" · ")}`);
+    if(cons.length) L.push(`✘ [b]${t("tpl_worst_s")}:[/b] ${cons.join(" · ")}`);
     const scored = s.scores.filter(c => c.mode !== "info");
     const infos = s.scores.filter(c => c.mode === "info" && c.txt.trim());
-    if(scored.length) L.push(`📊 [b]Notas:[/b] ${scored.map(c => `${c.n} ${fmt(c.v)}`).join(" · ")}`);
+    if(scored.length) L.push(`📊 [b]${t("tpl_scores")}:[/b] ${scored.map(c => `${c.n} ${fmt(c.v)}`).join(" · ")}`);
     infos.forEach(c => L.push(`${c.e} [b]${c.n}:[/b] ${c.txt.trim()}`));
-    if(s.likeIf.trim()) L.push(`🎯 [b]Para fans de:[/b] ${s.likeIf.trim()}`);
+    if(s.likeIf.trim()) L.push(`🎯 [b]${t("tpl_forfans")}:[/b] ${s.likeIf.trim()}`);
     if(s.verdict.trim()){ L.push(""); L.push(s.verdict.trim()); }
     if(s.tip.trim()){ L.push(""); L.push(`💡 ${s.tip.trim()}`); }
-    const tail = [recoShort(s), s.hours.trim() ? `${s.hours.trim()} h jugadas` : ""].filter(Boolean).join(" · ");
+    const tail = [recoShort(s), s.hours.trim() ? `${s.hours.trim()} ${t("tpl_hours")}` : ""].filter(Boolean).join(" · ");
     if(tail){ L.push(""); L.push(`[b]${tail}[/b]`); }
     return L.join("\n").replace(/\n{3,}/g, "\n\n");
   },
@@ -668,7 +800,6 @@ function bbToHtml(bb){
 }
 
 /* ---------- render ---------- */
-const MESES = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
 let draftTimer = null;
 let prevFinal = null;
 
@@ -697,20 +828,24 @@ function update(){
   $("#pv_body").innerHTML = bbToHtml(bb);
 
   const cc = $("#charCount");
-  cc.textContent = bb.length.toLocaleString("es-AR") + " / 8.000";
+  const loc = t("locale");
+  cc.textContent = bb.length.toLocaleString(loc) + " / " + (8000).toLocaleString(loc);
   cc.classList.toggle("over", bb.length > 8000);
 
   // marco de la vista previa
   const isNo = state.reco === "no";
-  $("#pv_rec").textContent = isNo ? "No recomendado" : "Recomendado";
+  $("#pv_rec").textContent = isNo ? t("pv_notrec") : t("pv_rec");
   $("#pv_thumb").innerHTML = isNo ? IC_DOWN : IC_UP;
   $("#pv_thumb").classList.toggle("down", isNo);
   const hrs = state.hours.trim();
   $("#pv_hours").style.display = hrs ? "" : "none";
-  $("#pv_hours").textContent = hrs + " h registradas";
-  $("#pv_game").textContent = state.game.trim() || "Tu juego";
+  $("#pv_hours").textContent = hrs + " " + t("pv_hours_rec");
+  $("#pv_game").textContent = state.game.trim() || t("pv_game_def");
   const d = new Date();
-  $("#pv_date").textContent = `PUBLICADA: ${d.getDate()} DE ${MESES[d.getMonth()]}`;
+  const mo = t("months")[d.getMonth()];
+  $("#pv_date").textContent = lang === "es"
+    ? `${t("pv_posted")} ${d.getDate()} DE ${mo}`
+    : `${t("pv_posted")} ${mo} ${d.getDate()}`;
 
   clearTimeout(draftTimer);
   draftTimer = setTimeout(() => lsSet(LS_DRAFT, state), 350);
@@ -724,25 +859,25 @@ function renderScores(){
     row.className = "srow";
     const isInfo = c.mode === "info";
     row.innerHTML = isInfo ? `
-      <input class="s-e" maxlength="4" title="Emoji (aparece en la reseña)">
-      <input class="s-n" title="Nombre de la categoría">
-      <input class="s-txt" placeholder="alta / ~30 h / mucho…" title="Texto libre (no suma al promedio)">
-      <button class="s-t info" title="Solo informativa: no suma al promedio. Tocá para que puntúe.">info</button>
-      <button class="s-x" title="Quitar categoría">${IC_X}</button>` : `
-      <input class="s-e" maxlength="4" title="Emoji (aparece en la reseña)">
-      <input class="s-n" title="Nombre de la categoría">
+      <input class="s-e" maxlength="4">
+      <input class="s-n">
+      <input class="s-txt" placeholder="${t("ph_info")}">
+      <button class="s-t info">${t("tog_info")}</button>
+      <button class="s-x">${IC_X}</button>` : `
+      <input class="s-e" maxlength="4">
+      <input class="s-n">
       <input class="s-r" type="range" min="0" max="10" step="0.5">
       <span class="s-v"></span>
-      <button class="s-t" title="Puntúa: suma al promedio. Tocá para hacerla solo informativa.">nota</button>
-      <button class="s-x" title="Quitar categoría">${IC_X}</button>`;
+      <button class="s-t">${t("tog_score")}</button>
+      <button class="s-x">${IC_X}</button>`;
     const e = row.querySelector(".s-e"), n = row.querySelector(".s-n");
     e.value = c.e; n.value = c.n;
     e.addEventListener("input", () => { c.e = e.value; update(); });
     n.addEventListener("input", () => { c.n = n.value; update(); });
     if(isInfo){
-      const t = row.querySelector(".s-txt");
-      t.value = c.txt;
-      t.addEventListener("input", () => { c.txt = t.value; update(); });
+      const txtInp = row.querySelector(".s-txt");
+      txtInp.value = c.txt;
+      txtInp.addEventListener("input", () => { c.txt = txtInp.value; update(); });
     }else{
       const r = row.querySelector(".s-r"), v = row.querySelector(".s-v");
       r.value = c.v;
@@ -768,7 +903,7 @@ function renderScores(){
 
 function renderList(kind){
   const box = $(kind === "pros" ? "#prosRows" : "#consRows");
-  const ph = kind === "pros" ? "Algo que te encantó" : "Algo que te molestó";
+  const ph = kind === "pros" ? t("ph_pro") : t("ph_con");
   box.innerHTML = "";
   state[kind].forEach((val, i) => {
     const row = document.createElement("div");
@@ -795,7 +930,57 @@ function addListRow(kind){
   update();
 }
 
+/* ---------- idioma: textos estáticos ---------- */
+function buildAddCat(){
+  const sel = $("#addCatSel");
+  sel.innerHTML = "";
+  sel.add(new Option(t("addcat_default"), ""));
+  MENU_CATS.forEach(c => sel.add(new Option(`${c.e} ${t(c.k)}`, `${c.e}|${c.k}|${c.mode}`)));
+  sel.add(new Option("✏️ " + t("addcat_custom"), "⭐|__custom__|score"));
+}
+function buildSelect(id, opts){
+  const sel = $(id), cur = sel.value;
+  sel.innerHTML = "";
+  opts.forEach(([v, label]) => sel.add(new Option(label, v)));
+  sel.value = cur;
+}
+function buildMeter(){
+  buildSelect("#f_meter", [
+    ["bars", t("meter_bars") + " ▰▰▱"], ["stars", t("meter_stars") + " ★★☆"],
+    ["dots", t("meter_dots") + " ●●○"], ["none", t("meter_none")],
+  ]);
+}
+function buildReco(){
+  buildSelect("#f_reco", [
+    ["yes", t("reco_yes")], ["sale", t("reco_sale")], ["no", t("reco_no")], ["custom", t("reco_custom")],
+  ]);
+}
+function applyStatic(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll("[data-i18n-html]").forEach(el => { el.innerHTML = t(el.dataset.i18nHtml); });
+  document.querySelectorAll("[data-i18n-ph]").forEach(el => { el.placeholder = t(el.dataset.i18nPh); });
+  document.querySelectorAll("[data-i18n-title]").forEach(el => { el.title = t(el.dataset.i18nTitle); });
+  buildAddCat(); buildMeter(); buildReco();
+  document.querySelectorAll("#langSw button").forEach(b => b.classList.toggle("active", b.dataset.l === lang));
+}
+function setLang(l){
+  if(l !== "es" && l !== "en") return;
+  if(l === lang) return;
+  // traducir nombres de categorías que sean términos por defecto conocidos (deja intactos los personalizados)
+  const oldDict = I18N[lang];
+  const rev = {};
+  ALL_CAT_KEYS.forEach(k => { rev[oldDict[k]] = k; });
+  lang = l; lsSet(LS_LANG, lang);
+  state.scores.forEach(c => { if(rev[c.n] !== undefined) c.n = t(rev[c.n]); });
+  applyStatic();
+  renderScores(); renderList("pros"); renderList("cons");
+  $("#pillDesc").textContent = tdesc(state.template);
+  update();
+}
+
 function renderAll(){
+  applyStatic();
   $("#f_game").value = state.game;
   $("#f_hours").value = state.hours;
   $("#f_tagline").value = state.tagline;
@@ -810,13 +995,17 @@ function renderAll(){
   $("#f_overrideVal").value = state.overrideVal;
   $("#f_overrideVal").disabled = !state.override;
   document.querySelectorAll(".pill").forEach(p => p.classList.toggle("active", p.dataset.t === state.template));
-  $("#pillDesc").textContent = TDESC[state.template];
+  $("#pillDesc").textContent = tdesc(state.template);
   renderScores();
   renderList("pros");
   renderList("cons");
   updateHistBadge();
   update();
 }
+$("#langSw").addEventListener("click", ev => {
+  const b = ev.target.closest("button[data-l]");
+  if(b) setLang(b.dataset.l);
+});
 
 /* ---------- eventos: campos de texto ---------- */
 function bind(id, key){
@@ -845,11 +1034,12 @@ $("#f_overrideVal").addEventListener("input", () => { state.overrideVal = $("#f_
 $("#addCatSel").addEventListener("change", () => {
   const v = $("#addCatSel").value;
   if(!v) return;
-  const [e, n, mode] = v.split("|");
-  state.scores.push({e, n: n === "__custom__" ? "Categoría" : n, v:7, mode: mode === "info" ? "info" : "score", txt:""});
+  const [e, key, mode] = v.split("|");
+  const isCustom = key === "__custom__";
+  state.scores.push({e, n: isCustom ? t("cat_new") : t(key), v:7, mode: mode === "info" ? "info" : "score", txt:""});
   $("#addCatSel").value = "";
   renderScores(); update();
-  if(n === "__custom__"){
+  if(isCustom){
     const names = document.querySelectorAll("#scoreRows .s-n");
     const last = names[names.length - 1];
     if(last){ last.focus(); last.select(); }
@@ -867,27 +1057,16 @@ $("#pills").addEventListener("click", ev => {
   if(!p) return;
   state.template = p.dataset.t;
   document.querySelectorAll(".pill").forEach(x => x.classList.toggle("active", x === p));
-  $("#pillDesc").textContent = TDESC[state.template];
+  $("#pillDesc").textContent = tdesc(state.template);
   update();
 });
 
 /* ---------- ideas para la frase ---------- */
-const IDEAS = [
-  "Entré a probarlo diez minutos y salí tres horas después.",
-  "El «una partida más» hecho juego.",
-  "Simple de aprender, imposible de soltar.",
-  "No es perfecto, pero cuando engancha no te suelta.",
-  "De esos juegos que te hacen mirar la hora y arrepentirte.",
-  "Mi productividad murió por una buena causa.",
-  "Dopamina en formato .exe.",
-  "El mejor peor vicio que agarré este año.",
-  "Venía por curiosidad, me quedé por el vicio.",
-  "Compralo. Gracias por venir a mi charla TED.",
-];
 let ideaIdx = -1;
 $("#btnIdea").addEventListener("click", () => {
-  ideaIdx = (ideaIdx + 1) % IDEAS.length;
-  state.tagline = IDEAS[ideaIdx];
+  const ideas = t("ideas");
+  ideaIdx = (ideaIdx + 1) % ideas.length;
+  state.tagline = ideas[ideaIdx];
   $("#f_tagline").value = state.tagline;
   update();
 });
@@ -903,7 +1082,7 @@ $("#btnCopy").addEventListener("click", () => {
     window.getSelection().removeAllRanges();
   };
   let done = false;
-  const ok = () => { if(!done){ done = true; toast("BBCode copiado. Pegalo en Steam."); } };
+  const ok = () => { if(!done){ done = true; toast(t("t_copied")); } };
   if(navigator.clipboard && navigator.clipboard.writeText){
     // si la API moderna no responde rápido (permisos), usamos el método clásico
     const timer = setTimeout(() => { if(!done){ fallback(); ok(); } }, 350);
@@ -919,7 +1098,7 @@ $("#btnCopy").addEventListener("click", () => {
 function updateHistBadge(){ $("#histBadge").textContent = loadAll().length; }
 
 $("#btnSave").addEventListener("click", () => {
-  if(!state.game.trim()){ toast("Poné el nombre del juego antes de guardar."); $("#f_game").focus(); return; }
+  if(!state.game.trim()){ toast(t("t_needname")); $("#f_game").focus(); return; }
   const all = loadAll();
   if(!state.draftId) state.draftId = uid();
   const snap = {id: state.draftId, savedAt: Date.now(), state: JSON.parse(JSON.stringify(state))};
@@ -928,25 +1107,25 @@ $("#btnSave").addEventListener("click", () => {
   lsSet(LS_ALL, all);
   lsSet(LS_DRAFT, state);
   updateHistBadge();
-  toast(`«${state.game.trim()}» guardada`);
+  toast(t("t_saved").replace("{x}", state.game.trim()));
 });
 
 $("#btnNew").addEventListener("click", () => {
-  if(!confirm("¿Empezar una reseña nueva? El borrador actual se pierde si no lo guardaste.")) return;
-  const t = state.template, m = state.meter;
+  if(!confirm(t("confirm_new"))) return;
+  const tpl = state.template, m = state.meter;
   state = defaultState();
-  state.template = t; state.meter = m;
+  state.template = tpl; state.meter = m;
   lsSet(LS_DRAFT, state);
   renderAll();
-  toast("Reseña nueva, a completar.");
+  toast(t("t_new"));
 });
 
-const TNAMES = {deluxe:"Deluxe", ficha:"Ficha", minimal:"Minimalista", clasico:"Clásico"};
 function renderHist(){
   const box = $("#histList");
   const all = loadAll().slice().sort((a,b) => b.savedAt - a.savedAt);
-  if(!all.length){ box.innerHTML = '<div class="empty">Todavía no guardaste ninguna reseña.<br>Completá una y tocá Guardar.</div>'; return; }
+  if(!all.length){ box.innerHTML = `<div class="empty">${t("hist_empty")}</div>`; return; }
   box.innerHTML = "";
+  const loc = t("locale");
   all.forEach(r => {
     const st = mergeState(r.state);
     const d = new Date(r.savedAt);
@@ -958,22 +1137,22 @@ function renderHist(){
         <div class="h-g"></div>
         <div class="h-meta"></div>
       </div>
-      <button class="btn sm">Cargar</button>
-      <button class="l-x" title="Eliminar"><svg class="ic" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6"/></svg></button>`;
+      <button class="btn sm">${t("b_load")}</button>
+      <button class="l-x" title="${t("b_close")}"><svg class="ic" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6"/></svg></button>`;
     item.querySelector(".h-score").textContent = computeFinal(st);
-    item.querySelector(".h-g").textContent = st.game || "(sin nombre)";
+    item.querySelector(".h-g").textContent = st.game || t("hist_noname");
     item.querySelector(".h-meta").textContent =
-      `${TNAMES[st.template] || st.template} · ${d.toLocaleDateString("es-AR")} ${d.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"})}`;
+      `${t("pill_" + st.template)} · ${d.toLocaleDateString(loc)} ${d.toLocaleTimeString(loc,{hour:"2-digit",minute:"2-digit"})}`;
     item.querySelector(".btn").addEventListener("click", () => {
       state = mergeState(r.state);
       state.draftId = r.id;
       lsSet(LS_DRAFT, state);
       renderAll();
       $("#dlgHist").close();
-      toast(`«${state.game}» cargada para editar.`);
+      toast(t("t_loaded").replace("{x}", state.game));
     });
     item.querySelector(".l-x").addEventListener("click", () => {
-      if(!confirm(`¿Eliminar la reseña de «${st.game || "(sin nombre)"}»?`)) return;
+      if(!confirm(t("confirm_del").replace("{x}", st.game || t("hist_noname")))) return;
       lsSet(LS_ALL, loadAll().filter(x => x.id !== r.id));
       updateHistBadge();
       renderHist();
@@ -986,14 +1165,14 @@ $("#dlgClose").addEventListener("click", () => $("#dlgHist").close());
 
 $("#btnExport").addEventListener("click", () => {
   const all = loadAll();
-  if(!all.length){ toast("No hay reseñas guardadas para exportar."); return; }
+  if(!all.length){ toast(t("t_noexport")); return; }
   const blob = new Blob([JSON.stringify(all, null, 2)], {type:"application/json"});
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = "mis-resenas-steam.json";
   a.click();
   URL.revokeObjectURL(a.href);
-  toast("Backup exportado.");
+  toast(t("t_exported"));
 });
 $("#btnImport").addEventListener("click", () => $("#fileImport").click());
 $("#fileImport").addEventListener("change", async ev => {
@@ -1010,9 +1189,9 @@ $("#fileImport").addEventListener("change", async ev => {
     lsSet(LS_ALL, all);
     updateHistBadge();
     renderHist();
-    toast(`${added} reseña(s) importada(s).`);
+    toast(t("t_imported").replace("{n}", added));
   }catch(e){
-    toast("Ese archivo no parece un backup válido.");
+    toast(t("t_badfile"));
   }
   ev.target.value = "";
 });
@@ -1020,11 +1199,11 @@ $("#fileImport").addEventListener("change", async ev => {
 /* ---------- toast ---------- */
 let toastTimer = null;
 function toast(msg){
-  const t = $("#toast");
-  t.textContent = msg;
-  t.classList.add("show");
+  const el = $("#toast");
+  el.textContent = msg;
+  el.classList.add("show");
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove("show"), 2200);
+  toastTimer = setTimeout(() => el.classList.remove("show"), 2200);
 }
 
 /* ---------- arranque ---------- */
